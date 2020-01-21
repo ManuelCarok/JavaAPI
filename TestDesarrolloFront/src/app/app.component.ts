@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApirestService } from './core/apirest.service';
 import { IfStmt } from '@angular/compiler';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -13,22 +14,29 @@ export class AppComponent implements OnInit{
   headers: string [] = ["Nombre","Apellido","Fecha","Edad","Días"];
   columns: any [] = [];
 
-  nombre: string = "";
-  fecha: string = "";
+  formPerson: FormGroup;
 
   constructor(
     private service: ApirestService 
-  ) { }
+  ) { 
+    this.formPerson = new FormGroup({
+      txtNombre: new FormControl('', Validators.required),
+      txtFecha: new FormControl('', Validators.required)
+    });
+  }
 
   ngOnInit(): void {
     localStorage.setItem('personas', '[]');
   }
 
-  addPersona() {
-    this.service.getData(this.nombre, this.fecha).subscribe(data => {
-      this.addLocalStorage({ nombre: data.nombre.toString().split(' ')[0], apellido: data.nombre.toString().split(' ')[1], fecha: this.fecha, edad: data.edad, dias: data.dias });
+  addPersona(values: any) {
+    
+    this.service.getData(values.txtNombre, values.txtFecha).subscribe(data => {
+      this.addLocalStorage({ nombre: data.nombre.toString().split(' ')[0], apellido: data.nombre.toString().split(' ')[1], fecha: values.txtFecha, edad: data.edad, dias: data.dias });
       this.columns = JSON.parse(localStorage.getItem('personas'));
     });
+
+    return false;
   }
 
   addLocalStorage(element: any) {
