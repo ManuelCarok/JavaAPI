@@ -1,15 +1,16 @@
-package cl.manuelcarok.testing;
+package cl.manuelcarok;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import cl.manuelcarok.repositories.ApiRepository;
 
-public class ApiRepositoryTest {
+class ApiRespositoryTest {
 
 	@Test
 	public void testGetNombre() {
@@ -41,4 +42,5 @@ public class ApiRepositoryTest {
 		
 		assertEquals(esperado, dias.split(" ")[0]);
 	}
+
 }
