@@ -42,24 +42,24 @@ public class ApiRepository {
 		
 		if (proximoDia.isBefore(hoy) || proximoDia.isEqual(hoy)) {
 			proximoDia = proximoDia.plusYears(1);
-        }
-		
-        long totalDias = ChronoUnit.DAYS.between(hoy, proximoDia);
-
-        if ((hoy.getYear() % 4 == 0) && ((hoy.getYear() % 100 != 0) || (hoy.getYear() % 400 == 0)))
-        {
-        	if (totalDias == 366) {
-           		resul = "Felicidades!! un poema por tu cumpleaños: " + getPoema();
-        	} else {
-            	resul = String.valueOf(totalDias);
         	}
-        } else {
-        	if (totalDias == 365) {
-          		resul = "Felicidades!! un poema por tu cumpleaños: " + getPoema();
+		
+        	long totalDias = ChronoUnit.DAYS.between(hoy, proximoDia);
+
+        	if ((hoy.getYear() % 4 == 0) && ((hoy.getYear() % 100 != 0) || (hoy.getYear() % 400 == 0)))
+        	{
+        		if (totalDias == 366) {
+           			resul = "Felicidades!! un poema por tu cumpleaños: " + getPoema();
+        		} else {
+            			resul = String.valueOf(totalDias);
+        		}
         	} else {
-        		resul = String.valueOf(totalDias);
-            }
-        }
+        		if (totalDias == 365) {
+          			resul = "Felicidades!! un poema por tu cumpleaños: " + getPoema();
+        		} else {
+        			resul = String.valueOf(totalDias);
+            		}
+        	}
 		return resul;
 	}
 	
