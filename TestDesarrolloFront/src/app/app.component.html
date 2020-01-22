@@ -21,10 +21,10 @@
 
             <div class="form-group">
               <label for="exampleFormControlInput1">Fecha Nacimiento</label>
-              <input type="text" class="form-control" formControlName="txtFecha" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" required>
+              <input type="text" class="form-control" placeholder="dd-mm-yyyy" formControlName="txtFecha" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" required>
             </div>
 
-            <button class="btn btn-primary btn-block" type="submit">Agregar</button>
+            <button class="btn btn-primary btn-block" type="submit" [disabled]="!formTest.valid">Agregar</button>
           </form>
         </div>
       </div>
@@ -61,5 +61,4 @@
   </div>
 </div>
 
-<!-- <app-loading></app-loading> -->
 <router-outlet></router-outlet>

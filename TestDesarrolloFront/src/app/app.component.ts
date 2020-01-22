@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApirestService } from './core/apirest.service';
 import { IfStmt } from '@angular/compiler';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ValidateNombre } from './core/nombre.validator';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,7 @@ export class AppComponent implements OnInit{
     private service: ApirestService 
   ) { 
     this.formPerson = new FormGroup({
-      txtNombre: new FormControl('', Validators.required),
+      txtNombre: new FormControl('', [Validators.required, ValidateNombre]),
       txtFecha: new FormControl('', Validators.required)
     });
   }
